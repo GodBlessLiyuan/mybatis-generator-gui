@@ -17,7 +17,7 @@ public class MyStringUtils {
             if (str.contains("_")) {
                 str = str.toLowerCase();
                 StringBuilder sb = new StringBuilder();
-                sb.append(String.valueOf(str.charAt(0)).toUpperCase());
+//                sb.append(String.valueOf(str.charAt(0)).toUpperCase());
                 for (int i = 1; i < str.length(); i++) {
                     char c = str.charAt(i);
                     if (c != '_') {

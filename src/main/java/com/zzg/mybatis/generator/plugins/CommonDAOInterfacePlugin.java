@@ -18,7 +18,7 @@ import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
  */
 public class CommonDAOInterfacePlugin extends PluginAdapter {
 
-    private static final String DEFAULT_DAO_SUPER_CLASS = ".MyBatisBaseDao";
+    private static final String DEFAULT_DAO_SUPER_CLASS = ".BaseMapper";
     private static final FullyQualifiedJavaType PARAM_ANNOTATION_TYPE = new FullyQualifiedJavaType("org.apache.ibatis.annotations.Param");
     private static final FullyQualifiedJavaType LIST_TYPE = FullyQualifiedJavaType.getNewListInstance();
     private static final FullyQualifiedJavaType SERIALIZEBLE_TYPE = new FullyQualifiedJavaType("java.io.Serializable");
@@ -46,13 +46,13 @@ public class CommonDAOInterfacePlugin extends PluginAdapter {
         Interface mapperInterface = new Interface(daoTargetPackage + DEFAULT_DAO_SUPER_CLASS);
 
         if (stringHasValue(daoTargetPackage)) {
-            mapperInterface.addImportedType(PARAM_ANNOTATION_TYPE);
-            mapperInterface.addImportedType(LIST_TYPE);
+//            mapperInterface.addImportedType(PARAM_ANNOTATION_TYPE);
+//            mapperInterface.addImportedType(LIST_TYPE);
             mapperInterface.addImportedType(SERIALIZEBLE_TYPE);
 
             mapperInterface.setVisibility(JavaVisibility.PUBLIC);
             mapperInterface.addJavaDocLine("/**");
-            mapperInterface.addJavaDocLine(" * " + "DAO公共基类，由MybatisGenerator自动生成请勿修改");
+            mapperInterface.addJavaDocLine(" * " + "Mapper公共基类，由MybatisGenerator自动生成请勿修改");
             mapperInterface.addJavaDocLine(" * " + "@param <Model> The Model Class 这里是泛型不是Model类");
             mapperInterface.addJavaDocLine(" * " + "@param <PK> The Primary Key Class 如果是无主键，则可以用Model来跳过，如果是多主键则是Key类");
 			if (isUseExample()) {
@@ -78,7 +78,7 @@ public class CommonDAOInterfacePlugin extends PluginAdapter {
                 CompilationUnit compilationUnit = generatedJavaFile.getCompilationUnit();
                 FullyQualifiedJavaType type = compilationUnit.getType();
                 String modelName = type.getShortName();
-                if (modelName.endsWith("DAO")) {
+                if (modelName.endsWith("Mapper")) {
                 }
             }
             GeneratedJavaFile mapperJavafile = new GeneratedJavaFile(mapperInterface, daoTargetDir, javaFileEncoding, javaFormatter);
